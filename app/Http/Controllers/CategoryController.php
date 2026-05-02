@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
    
-    public function index()
+   public function index()
 {
     $categories = Category::where('user_id', auth()->id())->get();
 
@@ -25,12 +25,11 @@ class CategoryController extends Controller
     $category = Category::create([
         'name' => $request->name,
         'description' => $request->description,
-        'user_id' => auth()->id() // REAL USER LINK
+        'user_id' => auth()->id()
     ]);
 
     return response()->json($category);
 }
-
     
     public function update(Request $request, $id)
     {
