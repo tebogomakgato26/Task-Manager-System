@@ -8,22 +8,34 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     
-    public function index()
+   public function index()
 {
-    $tasks = Task::where('user_id', auth()->id())
-                ->with(['category'])
-                ->get();
+    $tasks = Task::with(['category'])->get();
+    return view('tasks.index', compact('tasks'));
+} 
+    public function create()
+{
+    $users = \App\Models\User::all();
+    $categories = \App\Models\Category::all();
+    return view('tasks.create', compact('users', 'categories'));
+}
 
-    return response()->json($tasks);
+public function edit($id)
+{
+    $task = Task::findOrFail($id);
+    $users = \App\Models\User::all();
+    $categories = \App\Models\Category::all();
+    return view('tasks.edit', compact('task', 'users', 'categories'));
 }
 
     
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'deadline' => 'required|date'
-        ]);
+    'title' => 'required',
+    'deadline' => 'required|date',
+    'category_id' => 'nullable',
+]);
 
         $task = Task::create([
             'title' => $request->title,
@@ -31,10 +43,10 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'status' => 'pending',
             'user_id' => auth()->id(),
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id ?? null,
         ]);
 
-        return response()->json($task);
+       return redirect()->route('tasks.index');
     }
 
     

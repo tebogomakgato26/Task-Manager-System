@@ -7,30 +7,27 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-   
-   public function index()
-{
-    $categories = Category::where('user_id', auth()->id())->get();
+    public function index()
+    {
+        $categories = Category::where('user_id', auth()->id())->get();
+        return view('categories.index', compact('categories'));
+    }
 
-    return response()->json($categories);
-}
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
 
-   
-  public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required'
-    ]);
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => auth()->id()
+        ]);
 
-    $category = Category::create([
-        'name' => $request->name,
-        'description' => $request->description,
-        'user_id' => auth()->id()
-    ]);
+        return redirect()->route('categories.index');
+    }
 
-    return response()->json($category);
-}
-    
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -40,15 +37,14 @@ class CategoryController extends Controller
             'description' => $request->description
         ]);
 
-        return response()->json($category);
+        return redirect()->route('categories.index');
     }
 
-    
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return response()->json(['message' => 'Deleted successfully']);
+        return redirect()->route('categories.index');
     }
 }
