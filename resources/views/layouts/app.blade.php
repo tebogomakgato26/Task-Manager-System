@@ -40,8 +40,8 @@
             <a href="{{ route('tasks.index') }}" class="sidebar-link {{ request()->routeIs('tasks.*') ? 'active' : '' }}">
                 My Tasks
             </a>
-            <a href="#" class="sidebar-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                Categories
+            <a href="{{ route('categories.index') }}" class="sidebar-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+              Categories
             </a>
             <a href="#" class="sidebar-link">
                 Team

@@ -62,7 +62,7 @@ public function edit($id)
             'category_id' => $request->category_id
         ]);
 
-        return response()->json($task);
+        return redirect()->route('tasks.index');
     }
 
     

@@ -13,9 +13,13 @@ Route::get('/', function () {
 });
 
 
-Route::view('/dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/dashboard', function () {
+    $totalTasks = \App\Models\Task::count();
+    $pendingTasks = \App\Models\Task::where('status', 'pending')->count();
+    $inProgressTasks = \App\Models\Task::where('status', 'in_progress')->count();
+    $completedTasks = \App\Models\Task::where('status', 'completed')->count();
+    return view('dashboard', compact('totalTasks', 'pendingTasks', 'inProgressTasks', 'completedTasks'));
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
