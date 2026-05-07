@@ -38,12 +38,39 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="5" class="text-center text-gray-400 py-8 text-sm">
-                        No tasks yet. Click "+ New Task" to get started!
-                    </td>
-                </tr>
-            </tbody>
+              <tbody>
+    @forelse($recentTasks as $task)
+    <tr class="border-t border-gray-100">
+        <td class="px-5 py-3 text-gray-800">{{ $task->title }}</td>
+        <td class="px-5 py-3 text-gray-500">{{ $task->assignee->name ?? 'Unassigned' }}</td>
+        <td class="px-5 py-3">
+            @if($task->priority == 'high')
+                <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">High</span>
+            @elseif($task->priority == 'medium')
+                <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">Medium</span>
+            @else
+                <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">Low</span>
+            @endif
+        </td>
+        <td class="px-5 py-3">
+            @if($task->status == 'completed')
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded">Completed</span>
+            @elseif($task->status == 'in_progress')
+                <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">In Progress</span>
+            @else
+                <span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">Pending</span>
+            @endif
+        </td>
+        <td class="px-5 py-3 text-gray-500">{{ $task->deadline ?? 'No deadline' }}</td>
+    </tr>
+    @empty
+    <tr>
+        <td colspan="5" class="text-center text-gray-400 py-8 text-sm">
+            No tasks yet. Click "+ New Task" to get started!
+        </td>
+        </tr>
+         @endforelse
+       </tbody>
         </table>
     </div>
 </x-app-layout>

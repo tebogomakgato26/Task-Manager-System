@@ -8,11 +8,31 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     
-   public function index()
+   public function index(Request $request)
 {
-    $tasks = Task::with(['category'])->get();
-    return view('tasks.index', compact('tasks'));
-} 
+    $query = Task::with(['category']);
+
+    if ($request->search) {
+        $query->where('title', 'like', '%' . $request->search . '%');
+    }
+
+    if ($request->status) {
+        $query->where('status', $request->status);
+    }
+
+    if ($request->priority) {
+        $query->where('priority', $request->priority);
+    }
+
+    if ($request->category_id) {
+        $query->where('category_id', $request->category_id);
+    }
+
+    $tasks = $query->get();
+    $categories = \App\Models\Category::all();
+
+    return view('tasks.index', compact('tasks', 'categories'));
+}
     public function create()
 {
     $users = \App\Models\User::all();

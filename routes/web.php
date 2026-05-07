@@ -18,11 +18,10 @@ Route::get('/dashboard', function () {
     $pendingTasks = \App\Models\Task::where('status', 'pending')->count();
     $inProgressTasks = \App\Models\Task::where('status', 'in_progress')->count();
     $completedTasks = \App\Models\Task::where('status', 'completed')->count();
-    return view('dashboard', compact('totalTasks', 'pendingTasks', 'inProgressTasks', 'completedTasks'));
+    $recentTasks = \App\Models\Task::with(['category'])->latest()->take(5)->get();
+    return view('dashboard', compact('totalTasks', 'pendingTasks', 'inProgressTasks', 'completedTasks', 'recentTasks'));
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
-
    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

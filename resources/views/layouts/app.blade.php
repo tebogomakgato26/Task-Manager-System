@@ -43,9 +43,7 @@
             <a href="{{ route('categories.index') }}" class="sidebar-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
               Categories
             </a>
-            <a href="#" class="sidebar-link">
-                Team
-            </a>
+        
             <a href="{{ route('profile.edit') }}" class="sidebar-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
                 Profile
             </a>
