@@ -1,8 +1,16 @@
 <x-app-layout>
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-lg font-medium text-gray-800">All Tasks</h2>
-        <a href="{{ route('tasks.create') }}" class="text-xs text-white px-4 py-2 rounded" style="background:#059669;">+ New Task</a>
+        <a href="{{ route('tasks.create') }}" class="text-xs text-white px-4 py-2 rounded" style="background:#059669;">
+            + New Task
+        </a>
     </div>
+
+    @if(session('success'))
+        <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
         <form method="GET" action="{{ route('tasks.index') }}">
@@ -28,10 +36,13 @@
                 <select name="category_id" class="w-full border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:border-green-500">
                     <option value="">All Categories</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
+
             <div class="flex gap-2 mt-3">
                 <button type="submit" class="text-white px-4 py-2 rounded text-sm" style="background:#059669;">Filter</button>
                 <a href="{{ route('tasks.index') }}" class="bg-gray-100 text-gray-700 px-4 py-2 rounded text-sm">Clear</a>
@@ -43,20 +54,20 @@
         <table class="w-full text-sm">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Task</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Assigned To</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Category</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Priority</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Status</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Deadline</th>
-                    <th class="text-left px-5 py-3 text-xs text-gray-500 font-medium">Actions</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Task</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Assigned To</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Category</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Priority</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Status</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Deadline</th>
+                    <th class="text-left px-5 py-3 text-xs text-gray-500">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($tasks as $task)
                 <tr class="border-t border-gray-100">
                     <td class="px-5 py-3 text-gray-800">{{ $task->title }}</td>
-                    <td class="px-5 py-3 text-gray-500">{{ $task->assignee->name ?? 'Unassigned' }}</td>
+                    <td class="px-5 py-3 text-gray-500">{{ $task->assignedUser->name ?? 'Unassigned' }}</td>
                     <td class="px-5 py-3 text-gray-500">{{ $task->category->name ?? 'None' }}</td>
                     <td class="px-5 py-3">
                         @if($task->priority == 'high')

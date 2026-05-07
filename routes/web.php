@@ -4,22 +4,56 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use Illuminate\Support\Facades\Auth;
 
 
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 
 Route::get('/dashboard', function () {
-    $totalTasks = \App\Models\Task::count();
-    $pendingTasks = \App\Models\Task::where('status', 'pending')->count();
-    $inProgressTasks = \App\Models\Task::where('status', 'in_progress')->count();
-    $completedTasks = \App\Models\Task::where('status', 'completed')->count();
-    $recentTasks = \App\Models\Task::with(['category'])->latest()->take(5)->get();
-    return view('dashboard', compact('totalTasks', 'pendingTasks', 'inProgressTasks', 'completedTasks', 'recentTasks'));
+
+    $userId = Auth::id();
+
+    $totalTasks = \App\Models\Task::where('user_id', $userId)
+        ->orWhere('assigned_to', $userId)
+        ->count();
+
+    $pendingTasks = \App\Models\Task::where(function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->orWhere('assigned_to', $userId);
+    })->where('status', 'pending')->count();
+
+    $inProgressTasks = \App\Models\Task::where(function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->orWhere('assigned_to', $userId);
+    })->where('status', 'in_progress')->count();
+
+    $completedTasks = \App\Models\Task::where(function ($query) use ($userId) {
+        $query->where('user_id', $userId)
+              ->orWhere('assigned_to', $userId);
+    })->where('status', 'completed')->count();
+
+    $recentTasks = \App\Models\Task::with(['category'])
+        ->where(function ($query) use ($userId) {
+            $query->where('user_id', $userId)
+                  ->orWhere('assigned_to', $userId);
+        })
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('dashboard', compact(
+        'totalTasks',
+        'pendingTasks',
+        'inProgressTasks',
+        'completedTasks',
+        'recentTasks'
+    ));
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware('auth')->group(function () {
    
