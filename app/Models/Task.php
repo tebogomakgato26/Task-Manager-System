@@ -14,17 +14,22 @@ class Task extends Model
         'description',
         'deadline',
         'status',
+        'priority',
         'user_id',
+        'assigned_to',
         'category_id'
     ];
 
-    // task belongs to a user
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    // task belongs to a category
+    public function assignedUser()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

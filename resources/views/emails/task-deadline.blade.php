@@ -1,8 +1,10 @@
 <h2>Task Deadline Reminder</h2>
 
+<h2>Deadline Reminder</h2>
+
+<p>Hi,</p>
+
 <p>Your task is due soon:</p>
 
-<p><strong>Title:</strong> {{ $task->title }}</p>
-<p><strong>Deadline:</strong> {{ $task->deadline }}</p>
-
-<p>Please complete it before the deadline.</p>
+<p><strong>{{ $task->title }}</strong></p>
+<p>Deadline: {{ $task->deadline }}</p>
