@@ -11,21 +11,21 @@
                     placeholder="Search tasks..."
                     class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-green-500">
 
-                <select name="status" class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-green-500">
+                <select name="status" class="w-full border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:border-green-500">
                     <option value="">All Statuses</option>
                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                     <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
                     <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
                 </select>
 
-                <select name="priority" class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-green-500">
+                <select name="priority" class="w-full border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:border-green-500">
                     <option value="">All Priorities</option>
                     <option value="low" {{ request('priority') == 'low' ? 'selected' : '' }}>Low</option>
                     <option value="medium" {{ request('priority') == 'medium' ? 'selected' : '' }}>Medium</option>
                     <option value="high" {{ request('priority') == 'high' ? 'selected' : '' }}>High</option>
                 </select>
 
-                <select name="category_id" class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-green-500">
+                <select name="category_id" class="w-full border border-gray-300 rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:border-green-500">
                     <option value="">All Categories</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
