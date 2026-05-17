@@ -241,7 +241,7 @@ Manage business logic and application requests.
 ## Screenshots
 
 ### Login Page
-![Login Page](docs/images/login.jpeg)
+![Login Page](docs/images/Login.jpeg)
 
 ---
 
@@ -252,12 +252,12 @@ Manage business logic and application requests.
 
 
 ### Create Task Page
-![Create Task](docs/images/create-task.png)
+![Create Task](docs/images/task.jpeg)
 
 ---
 
 ### Categories Page
-_Add screenshot here_
+![Create category](docs/images/categories.jpeg)
 
 ---
 
