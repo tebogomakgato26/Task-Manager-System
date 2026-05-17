@@ -252,7 +252,7 @@ Manage business logic and application requests.
 
 
 ### Create Task Page
-![Create Task](docs/images/task.jpeg)
+![Create Task](docs/images/tasks.jpeg)
 
 ---
 
