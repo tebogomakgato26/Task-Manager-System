@@ -1,4 +1,3 @@
-````markdown
 # Task Management System
 
 ## Description
@@ -338,6 +337,6 @@ The application demonstrates the implementation of:
 - Git Version Control
 
 ---
-````
+
 
 
