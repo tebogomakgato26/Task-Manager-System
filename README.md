@@ -1,5 +1,3 @@
-# Task Management System
-
 ## Description
 
 The Task Management System is a web-based application developed using Laravel 12.  
