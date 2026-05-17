@@ -1,25 +1,49 @@
+````markdown
 # Task Management System
 
 ## Description
 
-The Task Management System is a web-based application developed using Laravel.  
-The system allows users to create, manage, update, and track tasks efficiently.
+The Task Management System is a web-based application developed using Laravel 12.  
+The system allows users to create, manage, assign, update, and track tasks efficiently within an organization or team environment.
 
-The application includes authentication, role-based access control, task assignment, and task status tracking functionalities. The project is developed for the ICE360 Web Frameworks module.
+The application includes authentication, role-based access control, task assignment, task categorization, and task status tracking functionalities. The project was developed for the ICE360 Web Frameworks module.
 
 ---
 
 ## Features
 
-- User Registration and Login
+### User Authentication
+- User Registration
+- User Login and Logout
 - Authentication using Laravel Breeze
-- Create, Edit, Update, and Delete Tasks
+- Protected Routes using Middleware
+
+### Task Management
+- Create Tasks
+- Edit Tasks
+- Delete Tasks
 - Assign Tasks to Users
-- Task Status Management
-- Task Categories and Priorities
-- Role-Based Access Control
-- Responsive User Interface
-- Secure Form Handling with CSRF Protection
+- Task Status Tracking
+- Task Priority Management
+- Task Category Management
+
+### Dashboard
+- Dashboard Statistics
+- Recent Tasks Overview
+- Task Monitoring
+
+### Security Features
+- CSRF Protection
+- Form Validation
+- Password Hashing
+- Secure Route Protection
+- Eloquent ORM Protection against SQL Injection
+
+### User Interface
+- Responsive Design
+- Modern Dashboard Layout
+- Tailwind CSS Styling
+- Interactive User Experience
 
 ---
 
@@ -32,8 +56,10 @@ The application includes authentication, role-based access control, task assignm
 - Blade Template Engine
 - Tailwind CSS
 - Laravel Breeze
+- Vite
 - Node.js
 - npm
+- Git & GitHub
 
 ---
 
@@ -42,18 +68,14 @@ The application includes authentication, role-based access control, task assignm
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/tebogomakgato26/task-manager.git
+git clone https://github.com/tebogomakgato26/Task-Manager-System.git
 ```
-
----
 
 ### 2. Navigate into the Project Folder
 
 ```bash
-cd task-manager
+cd Task-Manager-System
 ```
-
----
 
 ### 3. Install PHP Dependencies
 
@@ -61,23 +83,17 @@ cd task-manager
 composer install
 ```
 
----
-
 ### 4. Install Frontend Dependencies
 
 ```bash
 npm install
 ```
 
----
-
 ### 5. Create the Environment File
 
 ```bash
 cp .env.example .env
 ```
-
----
 
 ### 6. Generate Application Key
 
@@ -95,7 +111,7 @@ Update the following database details inside the `.env` file:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your_database_name
+DB_DATABASE=task_manager
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -118,17 +134,30 @@ php artisan db:seed
 
 ---
 
-## Start the Application
+# Running the Application
 
-### Run Laravel Server
+## Option 1: Run Everything with One Command
+
+```bash
+npm run dev-all
+```
+
+This command starts:
+- Laravel development server
+- Vite frontend server
+- Tailwind CSS compilation
+
+---
+
+## Option 2: Run Servers Separately
+
+### Start Laravel Server
 
 ```bash
 php artisan serve
 ```
 
----
-
-### Run Frontend Development Server
+### Start Frontend Development Server
 
 ```bash
 npm run dev
@@ -136,39 +165,51 @@ npm run dev
 
 ---
 
+## Access the Application
+
+Open the application in your browser:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
 ## How to Use the System
 
-1. Register a new user account
+1. Register a new account
 2. Login using your credentials
-3. Create new tasks
-4. Edit or delete tasks
-5. Assign tasks to users
-6. Update task status
-7. Manage task priorities and categories
+3. Create and manage tasks
+4. Assign tasks to users
+5. Update task statuses
+6. Manage task categories and priorities
+7. Monitor tasks from the dashboard
 
 ---
 
 ## Authentication & Authorization
 
-The application uses Laravel Breeze for authentication.
+The application uses Laravel Breeze for authentication and session management.
 
 Features include:
-- Login and Registration
-- Protected Routes using Middleware
+- User Registration
+- Login and Logout
+- Protected Routes
+- Middleware Authentication
 - Role-Based Access Control
-- Session Management
 
 ---
 
 ## Database
 
-The system uses MySQL as the database.
+The system uses MySQL as the database management system.
 
 Database features include:
 - Laravel Migrations
 - Eloquent ORM Relationships
 - Foreign Key Constraints
-- Seeders and Factories
+- Database Seeders
+- Factories for Test Data
 
 ---
 
@@ -177,34 +218,46 @@ Database features include:
 - CSRF Protection
 - Form Validation
 - Password Hashing
-- Route Protection using Middleware
-- Secure Data Handling using Eloquent ORM
+- Secure Middleware Authentication
+- Eloquent ORM Query Protection
+- Input Validation
+
+---
+
+## System Architecture
+
+The application follows the MVC (Model-View-Controller) architecture provided by Laravel.
+
+### Models
+Handle database interactions and relationships.
+
+### Views
+Built using Blade Templates and Tailwind CSS.
+
+### Controllers
+Manage business logic and application requests.
 
 ---
 
 ## Screenshots
 
 ### Login Page
-_Add screenshot here_
+![Login Page](docs/images/login.jpeg)
 
 ---
 
 ### Dashboard
-_Add screenshot here_
+![Dashboard](docs/images/dashboard.jpeg)
 
 ---
 
-### Task Management Page
-_Add screenshot here_
-
----
 
 ### Create Task Page
-_Add screenshot here_
+![Create Task](docs/images/create-task.png)
 
 ---
 
-### User Roles and Permissions
+### Categories Page
 _Add screenshot here_
 
 ---
@@ -214,13 +267,13 @@ _Add screenshot here_
 ### Admin Account
 
 Email:
-```
-Add admin email here
+```text
+test@test.com
 ```
 
 Password:
-```
-Add admin password here
+```text
+password123
 ```
 
 ---
@@ -228,24 +281,27 @@ Add admin password here
 ### User Account
 
 Email:
-```
-Add user email here
+```text
+dineomas773@gmail.com
 ```
 
 Password:
-```
-Add user password here
+```text
+987654321
 ```
 
 ---
 
 ## Project Structure
 
-The project follows the MVC (Model-View-Controller) architecture provided by Laravel.
+The project follows Laravel's standard folder structure:
 
-- Models handle database interactions
-- Views are created using Blade Templates
-- Controllers manage application logic
+- `app/` → Application logic
+- `routes/` → Application routes
+- `resources/views/` → Blade templates
+- `database/` → Migrations and seeders
+- `public/` → Public assets
+- `config/` → Configuration files
 
 ---
 
@@ -261,25 +317,27 @@ The project follows the MVC (Model-View-Controller) architecture provided by Lar
 Repository Link:
 
 ```text
-https://github.com/tebogomakgato26/task-manager
+https://github.com/tebogomakgato26/Task-Manager-System
 ```
 
 ---
 
 ## Notes
 
-This project is developed for the ICE360 Web Frameworks module.
+This project was developed for the ICE360 Web Frameworks module.
 
-Laravel Breeze was used to implement authentication and improve security.
-
-The application demonstrates the use of:
+The application demonstrates the implementation of:
 - Laravel Routing
 - Middleware
+- Authentication and Authorization
 - Blade Templating
 - Eloquent ORM
-- Authentication and Authorization
 - Database Migrations and Seeders
+- Tailwind CSS Integration
+- Responsive Web Design
+- Git Version Control
 
 ---
 ````
+
 
