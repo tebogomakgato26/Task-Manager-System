@@ -365,7 +365,7 @@ The project follows Laravel's standard folder structure:
 
 ### Login Page
 
-![Login Page](docs/images/Login.jpeg)
+![Login Page](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/Login.jpeg)
 
 ---
 
