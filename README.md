@@ -100,9 +100,9 @@ Before running the project, ensure the following software is installed:
 
 ### 1. Clone the Repository
 
-```bash
+
 git clone https://github.com/tebogomakgato26/Task-Manager-System.git
-```
+
 
 ### 2. Navigate to the Project Directory
 
@@ -152,7 +152,7 @@ Create the SQLite database file:
 touch database/database.sqlite
 ```
 
-> No username, password, host, or port configuration is required when using SQLite.
+
 
 ---
 
@@ -385,14 +385,14 @@ The project follows Laravel's standard folder structure:
 
 ## Test Login Details
 
-### Administrator Account
+### Standard User Account
 
 ```text
 Email: test@test.com
 Password: password123
 ```
 
-### Standard User Account
+### Administrator Account
 
 ```text
 Email: admin@gmail.com
