@@ -361,8 +361,6 @@ The project follows Laravel's standard folder structure:
 
 ---
 
-## Screenshots
-
 ### Login Page
 
 ![Login Page](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/Login.jpeg)
@@ -371,19 +369,19 @@ The project follows Laravel's standard folder structure:
 
 ### Dashboard
 
-![Dashboard](docs/images/dashboard.jpeg)
+![Dashboard](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/dashboard.jpeg)
 
 ---
 
 ### Create Task Page
 
-![Create Task](docs/images/tasks.jpeg)
+![Create Task](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/tasks.jpeg)
 
 ---
 
 ### Categories Page
 
-![Create category](docs/images/category.jpeg)
+![Create category](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/category.jpeg)
 
 ---
 
