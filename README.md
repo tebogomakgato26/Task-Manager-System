@@ -357,33 +357,31 @@ The project follows Laravel's standard folder structure:
 
 - `config/` → Configuration files
 
-```
 
----
 
 ### Login Page
 
 ![Login Page](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/Login.jpeg)
 
----
+
 
 ### Dashboard
 
 ![Dashboard](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/dashboard.jpeg)
 
----
+
 
 ### Create Task Page
 
 ![Create Task](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/tasks.jpeg)
 
----
+
 
 ### Categories Page
 
 ![Create category](https://raw.githubusercontent.com/tebogomakgato26/Task-Manager-System/main/docs/images/category.jpeg)
 
----
+
 
 ## Test Login Details
 
